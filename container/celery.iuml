@@ -1,0 +1,5 @@
+@startuml
+
+Container(celery, "Celery",  "Celery")
+
+@enduml

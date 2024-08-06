@@ -1,0 +1,5 @@
+@startuml
+
+Container(redis, "Redis",  "Redis")
+
+@enduml

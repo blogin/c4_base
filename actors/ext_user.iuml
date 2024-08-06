@@ -1,0 +1,5 @@
+@startuml
+
+Ext_Person(ext_user, "Внешний Пользователь", "Внешний пользователь")
+
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+
+Container(postgres_db, "Postgres DB",  "Postgres DB")
+
+@enduml
