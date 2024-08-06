@@ -1,5 +1,1 @@
-@startuml
-
 Container(django_be, "Django BE",  "Django BackEnd")
-
-@enduml
