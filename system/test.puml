@@ -6,7 +6,7 @@ LAYOUT_TOP_DOWN()
 
 title "C1 Виртуальный Помощник AS IS"
 
-Person(plan_user, "Проектировщик")
+Person(plan_user, "Проектировщик123")
 Person(hr_user, "Сотрудник HR")
 
 System(rocket, "S.Connect", "Корпоративный\nмессенджер") 
