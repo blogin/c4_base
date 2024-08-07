@@ -1,0 +1,42 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+skinparam wrapWidth 250
+LAYOUT_TOP_DOWN()
+
+title "C1 Виртуальный Помощник AS IS"
+
+Person(plan_user, "Проектировщик")
+Person(hr_user, "Сотрудник HR")
+
+System(rocket, "S.Connect", "Корпоративный\nмессенджер") 
+System(api1, "API для МL Проектировщик", "Сервис для взаимодействия с\nML моделью проектировщиков") 
+System(api2, "API для МL HR Адаптация", "Сервис для взаимодействия с\nML моделью HR по адаптации") 
+System(elastic, "ElasticSearch", "Сервис логирования") 
+
+System_Ext(gpt, "ChatGPT 3.5", "Вопросно-ответная\nсистема на базе ИИ") 
+
+SystemDb(ml_planner, "ML Проектировщик", "ML Модель\nПроектировщик") 
+SystemDb(ml_hr, "ML HR Адаптация", "ML Модель\nHR по адаптации") 
+SystemDb(khd, "КХД", "Витрины данных\nдля МL моделей") 
+SystemDb(es, "ES DB", "База данных для\nхранения и поиска\nрелевантных статей") 
+
+
+BiRel_R(plan_user, rocket, "ui")
+BiRel_D(hr_user, rocket, "ui")
+
+BiRel_R(rocket, api1, "rest")
+BiRel_D(rocket, api2, "rest")
+Rel_D(api1, elastic, "tcp")
+Rel_R(api2, elastic, "tcp")
+
+BiRel_R(api1, ml_planner, "rest")
+BiRel_D(api2, ml_hr, "rest")
+
+BiRel_L(ml_hr, gpt, "rest")
+Rel_D(ml_planner,es, "tcp")
+Rel_L(ml_hr,es, "tcp")
+Rel_R(es,khd, "Репликация\nДанных")
+
+
+@enduml
